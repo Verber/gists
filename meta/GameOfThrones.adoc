@@ -31,17 +31,20 @@ RETURN h1, s1, s2, s3, c1, c2, Will, Gared, WaymarRoyce, Others, k1, k2, d1
 [source,cypher]
 ----
 CREATE (BranStark:character:pointOfView:noble:greensight:skinchanger{name: "Bran"})-[h2:from_house]->(HouseStark:house{name: "Stark"})
-CREATE (HouseStark)<-[hd1:head_of]-(LordEddardStark:character:pointOfView:noble{name: "Eddard", also_known_as: ["Ned"]})-[h3:from_house]->(HouseStark)
-CREATE (theNorth:kingdom{name: "North"})<-[w1:warden_of]-(LordEddardStark)-[l1:lord_of]->(Winterfell:castle{name: "Winterfell"})
-CREATE (RobbStark:character:noble{name: "Robb"})-[h1:heir_of]->(LordEddardStark)
-CREATE (BranStark)<-[f1:father_of]-(LordEddardStark)-[f2:father_of]->(RobbStark)
+CREATE (HouseStark)<-[hd1:head]-(LordEddardStark:character:pointOfView:noble{name: "Eddard", also_known_as: ["Ned"]})-[h3:from_house]->(HouseStark)
+CREATE (theNorth:kingdom{name: "North"})<-[w1:warden]-(LordEddardStark)-[l1:lord]->(Winterfell:castle{name: "Winterfell"})
+CREATE (RobbStark:character:noble{name: "Robb"})-[h1:heir]->(LordEddardStark)
+CREATE (BranStark)<-[f1:father]-(LordEddardStark)-[f2:father]->(RobbStark)
 CREATE (OldNan:character{name: "Nan", also_known_as: ["Old Nan"]})-[s4:serves]->(HouseStark)
 CREATE (RobbStark)<-[n1:nurse]-(OldNan)-[n2:nurse]->(BranStark)
 CREATE (Desmond:character{name: "Desmond"})-[s5:serves]->(HouseStark)
 CREATE (ManceRayder:character:wildling{name: "Mance", also_known_as: ["Mance Rayder", "King-Beyond-the-Wall"]})
-CREATE (TheonGreyjoy:character:noble:pointOfView{name: "Theon"})<-[wr1:ward]-(LordEddardStark)
-CREATE (JonSnow:character:pointOfView:skinchanger{name: "Jon"})<-[b1:bastard]-(LordEddardStark)
+CREATE (TheonGreyjoy:character:noble:pointOfView{name: "Theon"})-[wr1:ward]->(LordEddardStark)
+CREATE (JonSnow:character:pointOfView:skinchanger{name: "Jon"})-[b1:bastard]->(LordEddardStark)
+CREATE (LordEddardStark)-[f3:father]->(JonSnow)
 CREATE (Ghost:direwolf{name: "Ghost"})-[bnd1:bound]->(JonSnow)
+CREATE (GreyWind:direwolf{name: "Grey Wind"})-[bnd2:bound]->(RobbStark)
+CREATE (Summer:direwolf{name: "Summer"})-[bnd3:bound]->(BranStark)
 RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
 ----
 
@@ -53,3 +56,13 @@ RETURN LordEddardStark, Gared
 ----
 
 //graph
+
+
+[source,cypher]
+----
+START n=node(*)
+MATCH (n)<-[k:kill]-(x)
+RETURN n `Character who already dead`, k.how as `How killed`, x as `By whom`
+----
+
+//table
