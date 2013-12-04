@@ -11,10 +11,10 @@ becomes:
 
 == Prologue
 
- [source,cypher]
- ----
- CREATE (NightsWatch:clan{name: "Night's Watch"})
- CREATE (WaymarRoyce:character{first_name:'Waymar', last_name: 'Royce'})-[r:belongs_to]->(NightsWatch) return n.name, r
- ----
+[source,cypher]
+----
+CREATE (NightsWatch:clan{name: "Night's Watch"})
+CREATE (WaymarRoyce:character{first_name:'Waymar', last_name: 'Royce'})-[r:belongs_to]->(NightsWatch) return n.name, r
+----
 
 
