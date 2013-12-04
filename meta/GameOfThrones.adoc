@@ -26,9 +26,9 @@ Introduce Will and Gared
 
 [source,cypher]
 ----
-CREATE (Will:caharacter:ranger:point-of-view{name: 'Will'})->[s2:serves]->(NightsWatch)
-CREATE (Gared:caharacter:ranger{name: 'Gared'})->[s3:serves]->(NightsWatch)
-CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will)
+CREATE (Will:caharacter:ranger:pointOfView { name: 'Will' })-[s2:serves]->(NightsWatch) 
+CREATE (Gared:caharacter:ranger { name: 'Gared' })-[s3:serves]->(NightsWatch) 
+CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will) 
 RETURN s2,s3,c1,c2,Will,Gared,WaymarRoyce
 ----
 
