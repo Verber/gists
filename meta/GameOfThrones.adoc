@@ -38,8 +38,14 @@ CREATE (BranStark)<-[f1:father_of]-(LordEddardStark)-[f2:father_of]->(RobbStark)
 CREATE (OldNan:character{name: "Nan", also_known_as: ["Old Nan"]})-[s4:serves]->(HouseStark)
 CREATE (RobbStark)<-[n1:nurse]-(OldNan)-[n2:nurse]->(BranStark)
 CREATE (ManceRayder:character:wildling{name: "Mance", also_known_as: ["Mance Rayder", "King-Beyond-the-Wall"]})
-WITH MATCH (Will:caharacter:ranger:pointOfView{name: 'Will'}) MERGE (Will)<-[k3:kill{how: "execution"}]-(LordEddardStark)
-RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan, Will
+RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
+----
+
+[source,cypher]
+----
+MATCH (LordEddardStark:character:pointOfView:noble{name: "Eddard"}), (Will:caharacter:ranger:pointOfView{name: 'Will'})
+MERGE (LordEddardStark)-[k3:kill{how: "execution"}]->(Will)
+RETURN LordEddardStark, Will
 ----
 
 //graph
