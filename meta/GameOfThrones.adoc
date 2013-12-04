@@ -13,8 +13,8 @@
 ----
 CREATE (NightsWatch:organization{name: "Night's Watch"})
 CREATE (HouseRoyce:house{name: 'Royce'})
-CREATE (WaymarRoyce:character:knight:noble:ranger{name:'Waymar'})-[h:from house]->(HouseRoyce)
-CREATE (WaymarRoyce)-[s:serve]->(NightsWatch)
+CREATE (WaymarRoyce:character:knight:noble:ranger{name:'Waymar'})-[h:from_house]->(HouseRoyce)
+CREATE (WaymarRoyce)-[s:serves]->(NightsWatch)
 RETURN WaymarRoyce.name, h, s
 ----
 
