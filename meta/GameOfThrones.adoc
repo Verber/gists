@@ -15,11 +15,11 @@ CREATE (NightsWatch:organization{name: "Night's Watch"})
 CREATE (HouseRoyce:house{name: 'Royce'})
 CREATE (WaymarRoyce:character:knight:noble:ranger{name:'Waymar'})-[h1:from_house]->(HouseRoyce)
 CREATE (WaymarRoyce)-[s1:serves]->(NightsWatch)
-CREATE (Will:caharacter:ranger:pointOfView { name: 'Will' })-[s2:serves]->(NightsWatch) 
+CREATE (Will:caharacter:ranger:pointOfView{name: 'Will'})-[s2:serves]->(NightsWatch)
 CREATE (Gared:caharacter:ranger { name: 'Gared' })-[s3:serves]->(NightsWatch) 
 CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will)
 CREATE (Others:race{name: "Others", also_known_as: ["White Walkers"]})
-CREATE (Gared)<-[k1:kill]-(Others)-[k2:kill]->(WaymarRoyce)
+CREATE (Gared)<-[k1:kill{how: "in battle"}]-(Others)-[k2:kill{how: "in battle"}]->(WaymarRoyce)
 CREATE (Will)-[d1:desert]->(NightsWatch)
 RETURN h1, s1, s2, s3, c1, c2, Will, Gared, WaymarRoyce, Others, k1, k2, d1
 ----
@@ -38,7 +38,9 @@ CREATE (BranStark)<-[f1:father_of]-(LordEddardStark)-[f2:father_of]->(RobbStark)
 CREATE (OldNan:character{name: "Nan", also_known_as: ["Old Nan"]})-[s4:serves]->(HouseStark)
 CREATE (RobbStark)<-[n1:nurse]-(OldNan)-[n2:nurse]->(BranStark)
 CREATE (ManceRayder:character:wildling{name: "Mance", also_known_as: ["Mance Rayder", "King-Beyond-the-Wall"]})
-RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
+MATCH (Will:caharacter:ranger:pointOfView{name: 'Will'})
+MERGE (Will)<-[k3:kill{how: "execution"}]-(LordEddardStark)
+RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan, Will
 ----
 
 //graph
