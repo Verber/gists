@@ -44,7 +44,7 @@ RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
 [source,cypher]
 ----
 MATCH (LordEddardStark:character:pointOfView:noble{name: "Eddard"}), (Will:caharacter:ranger:pointOfView{name: 'Will'})
-MERGE (LordEddardStark)-[k3:kill{how: "execution"}]->(Will)
+CREATE (LordEddardStark)-[k3:kill{how: "execution"}]->(Will)
 RETURN LordEddardStark, Will
 ----
 
