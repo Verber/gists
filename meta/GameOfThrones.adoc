@@ -62,7 +62,7 @@ RETURN LordEddardStark, Gared
 ----
 START n=node(*)
 MATCH (n)<-[k:kill]-(x)
-RETURN n `Character who already dead`, k.how as `How killed`, x as `By whom`
+RETURN n as `Dead Character`, k.how as `How killed`, x as `By whom`
 ----
 
 //table
