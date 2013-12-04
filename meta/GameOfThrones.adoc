@@ -1,0 +1,20 @@
+= Game of Thrones GraphGist
+
+    Because winter is coming
+
+:author: Ivan Mosiev, George Martin ;)
+:twitter: @polny_otec
+
+becomes:
+
+//console
+
+== Prologue
+
+ [source,cypher]
+ ----
+ CREATE (NightsWatch:clan{name: "Night's Watch"})
+ CREATE (WaymarRoyce:character{first_name:'Waymar', last_name: 'Royce'})-[r:belongs_to]->(NightsWatch) return n.name, r
+ ----
+
+
