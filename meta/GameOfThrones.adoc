@@ -20,7 +20,8 @@ CREATE (Gared:caharacter:ranger { name: 'Gared' })-[s3:serves]->(NightsWatch)
 CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will)
 CREATE (Others:race{name: "Others", also_known_as: ["White Walkers"]})
 CREATE (Gared)<-[k1:kill]-(Others)-[k2:kill]->(WaymarRoyce)
-RETURN h1, s1, s2, s3, c1, c2, Will, Gared, WaymarRoyce, Others, k1, k2
+CREATE (Will)-[d1:desert]->(NightsWatch)
+RETURN h1, s1, s2, s3, c1, c2, Will, Gared, WaymarRoyce, Others, k1, k2, d1
 ----
 
 //graph
