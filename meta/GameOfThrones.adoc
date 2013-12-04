@@ -43,8 +43,8 @@ RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
 
 [source,cypher]
 ----
-MATCH (LordEddardStark:character:pointOfView:noble{name: "Eddard"}), (Will:caharacter:ranger:pointOfView{name: 'Will'})
-CREATE (LordEddardStark)-[k3:kill{how: "execution"}]->(Will)
+START LordEddardStark=node:node_auto_index(name="Eddard"), Will=node:node_auto_index(name='Will')
+CREATE (LordEddardStark)-[k3:kill { how: "execution" }]->(Will)
 RETURN LordEddardStark, Will
 ----
 
