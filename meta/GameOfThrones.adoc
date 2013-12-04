@@ -17,8 +17,10 @@ CREATE (WaymarRoyce:character:knight:noble:ranger{name:'Waymar'})-[h1:from_house
 CREATE (WaymarRoyce)-[s1:serves]->(NightsWatch)
 CREATE (Will:caharacter:ranger:pointOfView { name: 'Will' })-[s2:serves]->(NightsWatch) 
 CREATE (Gared:caharacter:ranger { name: 'Gared' })-[s3:serves]->(NightsWatch) 
-CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will) 
-RETURN h1, s1, s2, s3, c1, c2, Will, Gared, WaymarRoyce
+CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will)
+CREATE (Others:race{name: "Others", also_known_as: ["White Walkers"]})
+CREATE (Gared)<-[k1:kill]-(Others)-[k2:kill]->(WaymarRoyce)
+RETURN h1, s1, s2, s3, c1, c2, Will, Gared, WaymarRoyce, Others, k1, k2
 ----
 
 //graph
