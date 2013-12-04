@@ -9,16 +9,28 @@
 
 == Prologue
 
+Introduce Ser Waymar Royce
+
 [source,cypher]
 ----
 CREATE (NightsWatch:organization{name: "Night's Watch"})
 CREATE (HouseRoyce:house{name: 'Royce'})
-CREATE (WaymarRoyce:character:knight:noble:ranger{name:'Waymar'})-[h:from_house]->(HouseRoyce)
-CREATE (WaymarRoyce)-[s:serves]->(NightsWatch)
+CREATE (WaymarRoyce:character:knight:noble:ranger{name:'Waymar'})-[h1:from_house]->(HouseRoyce)
+CREATE (WaymarRoyce)-[s1:serves]->(NightsWatch)
 RETURN WaymarRoyce.name, h, s
 ----
 
-//table
+//graph
+
+Introduce Will and Gared
+
+[source,cypher]
+----
+CREATE (Will:caharacter:ranger:point-of-view{name: 'Will'})->[s2:serves]->(NightsWatch)
+CREATE (Gared:caharacter:ranger{name: 'Gared'})->[s3:serves]->(NightsWatch)
+CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will)
+RETURN s2,s3,Will,Gared,WaymarRoyce
+----
 
 //graph
 
