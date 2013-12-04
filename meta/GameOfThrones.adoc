@@ -19,8 +19,8 @@ CREATE (Will:caharacter:ranger:pointOfView{name: 'Will'})-[s2:serves]->(NightsWa
 CREATE (Gared:caharacter:ranger { name: 'Gared' })-[s3:serves]->(NightsWatch) 
 CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will)
 CREATE (Others:race{name: "Others", also_known_as: ["White Walkers"]})
-CREATE (Gared)<-[k1:kill{how: "in battle"}]-(Others)-[k2:kill{how: "in battle"}]->(WaymarRoyce)
-CREATE (Will)-[d1:desert]->(NightsWatch)
+CREATE (Will)<-[k1:kill{how: "in battle"}]-(Others)-[k2:kill{how: "in battle"}]->(WaymarRoyce)
+CREATE (Gared)-[d1:deserts]->(NightsWatch)
 RETURN h1, s1, s2, s3, c1, c2, Will, Gared, WaymarRoyce, Others, k1, k2, d1
 ----
 
@@ -37,15 +37,19 @@ CREATE (RobbStark:character:noble{name: "Robb"})-[h1:heir_of]->(LordEddardStark)
 CREATE (BranStark)<-[f1:father_of]-(LordEddardStark)-[f2:father_of]->(RobbStark)
 CREATE (OldNan:character{name: "Nan", also_known_as: ["Old Nan"]})-[s4:serves]->(HouseStark)
 CREATE (RobbStark)<-[n1:nurse]-(OldNan)-[n2:nurse]->(BranStark)
+CREATE (Desmond:character{name: "Desmond"})-[s5:serves]->(HouseStark)
 CREATE (ManceRayder:character:wildling{name: "Mance", also_known_as: ["Mance Rayder", "King-Beyond-the-Wall"]})
+CREATE (TheonGreyjoy:character:noble:pointOfView{name: "Theon"})<-[w1:ward]-(LordEddardStark)
+CREATE (JonSnow:character:pointOfView:skinchanger{name: "Jon"})<-[b1:bastard]-(LordEddardStark)
+CREATE (Ghost:direwolf{name: "Ghost"})-[bnd1:bounded]-(JonSnow)
 RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
 ----
 
 [source,cypher]
 ----
-START LordEddardStark=node:node_auto_index(name="Eddard"), Will=node:node_auto_index(name='Will')
-CREATE (LordEddardStark)-[k3:kill { how: "execution" }]->(Will)
-RETURN LordEddardStark, Will
+START LordEddardStark=node:node_auto_index(name="Eddard"), Gared=node:node_auto_index(name='Gared')
+CREATE (LordEddardStark)-[k3:kill { how: "execution" }]->(Gared)
+RETURN LordEddardStark, Gared
 ----
 
 //graph
