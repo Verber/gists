@@ -14,7 +14,11 @@ becomes:
 [source,cypher]
 ----
 CREATE (NightsWatch:clan{name: "Night's Watch"})
-CREATE (WaymarRoyce:character{first_name:'Waymar', last_name: 'Royce'})-[r:belongs_to]->(NightsWatch) return n.name, r
+CREATE (WaymarRoyce:character{first_name:'Waymar', last_name: 'Royce'})-[r:belongs_to]->(NightsWatch) return WaymarRoyce.name, r
 ----
+
+//table
+
+//graph
 
 
