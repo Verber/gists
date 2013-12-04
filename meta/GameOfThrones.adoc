@@ -41,7 +41,7 @@ CREATE (Desmond:character{name: "Desmond"})-[s5:serves]->(HouseStark)
 CREATE (ManceRayder:character:wildling{name: "Mance", also_known_as: ["Mance Rayder", "King-Beyond-the-Wall"]})
 CREATE (TheonGreyjoy:character:noble:pointOfView{name: "Theon"})<-[wr1:ward]-(LordEddardStark)
 CREATE (JonSnow:character:pointOfView:skinchanger{name: "Jon"})<-[b1:bastard]-(LordEddardStark)
-CREATE (Ghost:direwolf{name: "Ghost"})-[bnd1:bounded]-(JonSnow)
+CREATE (Ghost:direwolf{name: "Ghost"})-[bnd1:bound]->(JonSnow)
 RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
 ----
 
