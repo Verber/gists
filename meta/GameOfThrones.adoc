@@ -9,16 +9,16 @@ Because winter is coming
 
 == Prologue
 
-[source,cypher]
+ [ source,cypher ] 
 ----
 CREATE ( NightsWatch:organization { name: "Night's Watch" } )
 CREATE ( HouseRoyce:house { name: 'Royce' } )
 CREATE ( WaymarRoyce:character:knight:noble { name:'Waymar' } )-[ :from_house ]->( HouseRoyce )
 CREATE ( WaymarRoyce )-[ :serves { as: "ranger" } ]->( NightsWatch )
-CREATE ( Will:caharacter:pointOfView {name: 'Will'})-[ :serves { as: "ranger" } ]->( NightsWatch )
-CREATE ( Gared:caharacter { name: 'Gared' })-[ :serves { as: "ranger" } ]->( NightsWatch )
+CREATE ( Will:caharacter:pointOfView {name: 'Will' } )-[ :serves { as: "ranger" } ]->( NightsWatch )
+CREATE ( Gared:caharacter { name: 'Gared' } )-[ :serves { as: "ranger" } ]->( NightsWatch )
 CREATE ( Gared )<-[ :commands ]-( WaymarRoyce )-[ :commands ]->( Will )
-CREATE ( Others:race { name: "Others", also_known_as: ["White Walkers"] } )
+CREATE ( Others:race { name: "Others", also_known_as: [ "White Walkers" ] } )
 CREATE ( Will )<-[ :kill { how: "in battle" } ]-( Others )-[ :kill { how: "in battle" } ]->( WaymarRoyce )
 CREATE ( Gared )-[ :deserts ]->( NightsWatch )
 RETURN Will, Gared, WaymarRoyce, Others
@@ -28,30 +28,33 @@ RETURN Will, Gared, WaymarRoyce, Others
 
 == Bran 1
 
-[source,cypher]
+ [ source,cypher ] 
 ----
-CREATE (BranStark:character:pointOfView:noble:greensight:skinchanger{name: "Bran"})-[h2:from_house]->(HouseStark:house{name: "Stark"})
-CREATE (HouseStark)<-[hd1:head]-(LordEddardStark:character:pointOfView:noble{name: "Eddard", also_known_as: ["Ned"]})-[h3:from_house]->(HouseStark)
-CREATE (theNorth:kingdom{name: "North"})<-[w1:warden]-(LordEddardStark)-[l1:lord]->(Winterfell:castle{name: "Winterfell"})
-CREATE (RobbStark:character:noble{name: "Robb"})-[h1:heir]->(LordEddardStark)
-CREATE (BranStark)<-[f1:father]-(LordEddardStark)-[f2:father]->(RobbStark)
-CREATE (OldNan:character{name: "Nan", also_known_as: ["Old Nan"]})-[s4:serves { as: "nurse" }]->(HouseStark)
-CREATE (Desmond:character{name: "Desmond"})-[s5:serves { as: "household guard" }]->(HouseStark)
-CREATE (ManceRayder:character:wildling{name: "Mance", also_known_as: ["Mance Rayder", "King-Beyond-the-Wall"]})
-CREATE (TheonGreyjoy:character:noble:pointOfView{name: "Theon"})-[wr1:ward]->(LordEddardStark)
-CREATE (JonSnow:character:pointOfView:skinchanger{name: "Jon"})-[b1:bastard]->(LordEddardStark)
-CREATE (LordEddardStark)-[f3:father]->(JonSnow)
-CREATE (Ghost:direwolf{name: "Ghost"})-[bnd1:bound]->(JonSnow)
-CREATE (GreyWind:direwolf{name: "Grey Wind"})-[bnd2:bound]->(RobbStark)
-CREATE (Summer:direwolf{name: "Summer"})-[bnd3:bound]->(BranStark)
-CREATE (Harwin:character{name: "Harwin"})-[:serves { as: "household guard" }]->(HouseStark)
+CREATE ( BranStark:character:pointOfView:noble:greensight:skinchanger { name: "Bran" } )-[ :from_house ]->( HouseStark:house { name: "Stark" } )
+CREATE ( LordEddardStark:character:pointOfView:noble { name: "Eddard", also_known_as: [ "Ned" ] } )-[ :from_house ]->( HouseStark )
+CREATE ( LordEddardStark )-[ :head ]->( HouseStark )
+CREATE ( LordEddardStark )-[ :warden ]->( theNorth:kingdom { name: "North" } )
+CREATE ( LordEddardStark )-[ :lord ]->( Winterfell:castle { name: "Winterfell" } )
+CREATE ( RobbStark:character:noble { name: "Robb" } )-[ :heir ]->( LordEddardStark )
+CREATE ( LordEddardStark )-[ :father ]->( RobbStark )
+CREATE ( LordEddardStark )-[ :father ]->( BranStark )
+CREATE ( OldNan:character { name: "Nan", also_known_as: [ "Old Nan" ] } )-[ :serves { as: "nurse" } ]->( HouseStark )
+CREATE ( Desmond:character { name: "Desmond" } )-[ :serves { as: "household guard" } ]->( HouseStark )
+CREATE ( Harwin:character { name: "Harwin" } )-[ :serves { as: "household guard" } ]->( HouseStark )
+CREATE ( ManceRayder:character:wildling { name: "Mance", also_known_as: [ "Mance Rayder", "King-Beyond-the-Wall" ] } )
+CREATE ( TheonGreyjoy:character:noble:pointOfView { name: "Theon" } )-[ :ward ]->( LordEddardStark )
+CREATE ( JonSnow:character:pointOfView:skinchanger { name: "Jon" } )-[ :bastard ]->( LordEddardStark )
+CREATE ( LordEddardStark )-[ :father ]->( JonSnow )
+CREATE ( Ghost:direwolf { name: "Ghost" } )-[ :bound ]->( JonSnow )
+CREATE ( GreyWind:direwolf { name: "Grey Wind" } )-[ :bound ]->( RobbStark )
+CREATE ( Summer:direwolf { name: "Summer" } )-[ :bound ]->( BranStark )
 RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
 ----
 
-[source,cypher]
+ [ source,cypher ] 
 ----
-START LordEddardStark=node:node_auto_index(name="Eddard"), Gared=node:node_auto_index(name='Gared')
-CREATE (LordEddardStark)-[k3:kill { how: "execution" }]->(Gared)
+START LordEddardStark=node:node_auto_index( name="Eddard" ), Gared=node:node_auto_index( name='Gared' )
+CREATE ( LordEddardStark )-[ :kill { how: "execution" } ]->( Gared )
 RETURN LordEddardStark, Gared
 ----
 
@@ -59,10 +62,10 @@ RETURN LordEddardStark, Gared
 
 === Frags list so far
 
-[source,cypher]
+ [ source,cypher ] 
 ----
-START n=node(*)
-MATCH (n)<-[k:kill]-(x)
+START n=node( * )
+MATCH ( n )<-[ k:kill ]-( x )
 RETURN n as `Dead Character`, k.how as `How killed`, x as `By whom`
 ----
 
@@ -70,9 +73,9 @@ RETURN n as `Dead Character`, k.how as `How killed`, x as `By whom`
 
 === Neo, do you remember what is the name of bastard and his direwolf?
 
-[source,cypher]
+ [ source,cypher ] 
 ----
-MATCH ()<-[:bastard]-(person)<-[:bound]-(direwolf)
+MATCH ( )<-[ :bastard ]-( person )<-[ :bound ]-( direwolf )
 RETURN person.name, direwolf.name
 ----
 
