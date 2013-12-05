@@ -5,8 +5,6 @@
 :author: Ivan Mosiev, George Martin ;)
 :twitter: @polny_otec
 
-//console
-
 == Prologue
 
 [source,cypher]
@@ -57,6 +55,7 @@ RETURN LordEddardStark, Gared
 
 //graph
 
+=== Frags list so far
 
 [source,cypher]
 ----
@@ -66,3 +65,15 @@ RETURN n as `Dead Character`, k.how as `How killed`, x as `By whom`
 ----
 
 //table
+
+=== Neo, do you remember what is the name of bastard and his direwolf?
+
+[source,cypher]
+----
+MATCH ()<-[:bastard]-(person)<-[:bound]-(direwolf)
+RETURN person, direwolf
+----
+
+//table
+
+//console
