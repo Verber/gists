@@ -11,17 +11,17 @@ Because winter is coming
 
 [source,cypher]
 ----
-CREATE (NightsWatch:organization{name: "Night's Watch"})
-CREATE (HouseRoyce:house{name: 'Royce'})
-CREATE (WaymarRoyce:character:knight:noble{name:'Waymar'})-[h1:from_house]->(HouseRoyce)
-CREATE (WaymarRoyce)-[s1:serves { as: "ranger" }]->(NightsWatch)
-CREATE (Will:caharacter:pointOfView{name: 'Will'})-[s2:serves { as: "ranger" }]->(NightsWatch)
-CREATE (Gared:caharacter:ranger { name: 'Gared' })-[s3:serves { as: "ranger" }]->(NightsWatch)
-CREATE (Gared)<-[c1:commands]-(WaymarRoyce)-[c2:commands]->(Will)
-CREATE (Others:race{name: "Others", also_known_as: ["White Walkers"]})
-CREATE (Will)<-[k1:kill{how: "in battle"}]-(Others)-[k2:kill{how: "in battle"}]->(WaymarRoyce)
-CREATE (Gared)-[d1:deserts]->(NightsWatch)
-RETURN h1, s1, s2, s3, c1, c2, Will, Gared, WaymarRoyce, Others, k1, k2, d1
+CREATE ( NightsWatch:organization { name: "Night's Watch" } )
+CREATE ( HouseRoyce:house { name: 'Royce' } )
+CREATE ( WaymarRoyce:character:knight:noble { name:'Waymar' } )-[ :from_house ]->( HouseRoyce )
+CREATE ( WaymarRoyce )-[ :serves { as: "ranger" } ]->( NightsWatch )
+CREATE ( Will:caharacter:pointOfView {name: 'Will'})-[ :serves { as: "ranger" } ]->( NightsWatch )
+CREATE ( Gared:caharacter { name: 'Gared' })-[ :serves { as: "ranger" } ]->( NightsWatch )
+CREATE ( Gared )<-[ :commands ]-( WaymarRoyce )-[ :commands ]->( Will )
+CREATE ( Others:race { name: "Others", also_known_as: ["White Walkers"] } )
+CREATE ( Will )<-[ :kill { how: "in battle" } ]-( Others )-[ :kill { how: "in battle" } ]->( WaymarRoyce )
+CREATE ( Gared )-[ :deserts ]->( NightsWatch )
+RETURN Will, Gared, WaymarRoyce, Others
 ----
 
 //graph
