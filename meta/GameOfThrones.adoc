@@ -9,7 +9,7 @@ Because winter is coming
 
 == Prologue
 
- [ source,cypher ] 
+[ source,cypher ]
 ----
 CREATE ( NightsWatch:organization { name: "Night's Watch" } )
 CREATE ( HouseRoyce:house { name: 'Royce' } )
@@ -30,7 +30,7 @@ RETURN Will, Gared, WaymarRoyce, Others
 
 == Bran 1
 
- [ source,cypher ] 
+[ source,cypher ]
 ----
 CREATE ( BranStark:character:pointOfView:noble:greensight:skinchanger { name: "Bran" } )-[ :from_house ]->( HouseStark:house { name: "Stark" } )
 CREATE ( LordEddardStark:character:pointOfView:noble { name: "Eddard", also_known_as: [ "Ned" ] } )-[ :from_house ]->( HouseStark )
@@ -53,7 +53,7 @@ CREATE ( Summer:direwolf { name: "Summer" } )-[ :bound ]->( BranStark )
 RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
 ----
 
- [ source,cypher ] 
+[ source,cypher ]
 ----
 START LordEddardStark=node:node_auto_index( name="Eddard" ), Gared=node:node_auto_index( name='Gared' )
 CREATE ( LordEddardStark )-[ :kill { how: "execution" } ]->( Gared )
@@ -64,7 +64,7 @@ RETURN LordEddardStark, Gared
 
 === Frags list so far
 
- [ source,cypher ] 
+[ source,cypher ]
 ----
 START n=node( * )
 MATCH ( n )<-[ k:kill ]-( x )
@@ -75,7 +75,7 @@ RETURN n as `Dead Character`, k.how as `How killed`, x as `By whom`
 
 === Neo, do you remember what is the name of bastard and his direwolf?
 
- [ source,cypher ] 
+[ source,cypher ]
 ----
 MATCH ( )<-[ :bastard ]-( person )<-[ :bound ]-( direwolf )
 RETURN person.name, direwolf.name
