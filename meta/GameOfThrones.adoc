@@ -83,3 +83,16 @@ RETURN person.name, direwolf.name
 
 //table
 
+
+== Who serves as household guard of Stark
+
+[source,cypher]
+----
+START HouseStark = node:node_auto_index(name = "Stark")
+MATCH (HouseStark)<-[s:serves]-(guard)
+WHERE s.as = "household guard"
+RETURN guard.name
+----
+
+//table
+
