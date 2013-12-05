@@ -17,9 +17,11 @@ CREATE ( WaymarRoyce:character:knight:noble { name:'Waymar' } )-[ :from_house ]-
 CREATE ( WaymarRoyce )-[ :serves { as: "ranger" } ]->( NightsWatch )
 CREATE ( Will:caharacter:pointOfView {name: 'Will' } )-[ :serves { as: "ranger" } ]->( NightsWatch )
 CREATE ( Gared:caharacter { name: 'Gared' } )-[ :serves { as: "ranger" } ]->( NightsWatch )
-CREATE ( Gared )<-[ :commands ]-( WaymarRoyce )-[ :commands ]->( Will )
+CREATE ( WaymarRoyce )-[ :commands ]->( Will )
+CREATE ( WaymarRoyce )-[ :commands ]->( Gared )
 CREATE ( Others:race { name: "Others", also_known_as: [ "White Walkers" ] } )
-CREATE ( Will )<-[ :kill { how: "in battle" } ]-( Others )-[ :kill { how: "in battle" } ]->( WaymarRoyce )
+CREATE ( Others )-[ :kill { how: "in battle" } ]->( WaymarRoyce )
+CREATE ( Others )-[ :kill { how: "in battle" } ]->( Will )
 CREATE ( Gared )-[ :deserts ]->( NightsWatch )
 RETURN Will, Gared, WaymarRoyce, Others
 ----
