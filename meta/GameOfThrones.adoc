@@ -84,7 +84,7 @@ RETURN person.name, direwolf.name
 //table
 
 
-== Who serves as household guard of Stark
+=== Who serves as household guard of Stark
 
 [source,cypher]
 ----
