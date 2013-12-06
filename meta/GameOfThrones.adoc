@@ -93,10 +93,10 @@ RETURN person.name, direwolf.name
 
 [source,cypher]
 ----
-START HouseStark = node:node_auto_index(name = "Stark")
-MATCH (HouseStark)<-[s:serves]-(guard)
-OPTIONAL MATCH (guard)-[:from_house]->(house)
-WHERE s.as = "household guard"
+START HouseStark = node:node_auto_index(name = "Stark") 
+MATCH (HouseStark)<-[s:serves]-(guard) 
+WHERE s.as = "household guard"  
+OPTIONAL MATCH (guard)-[:from_house]->(house) 
 RETURN guard.name + ' ' + COALESCE(house.name, ''), COALESCE(s.rank, 'guard')
 ----
 
