@@ -97,7 +97,7 @@ START HouseStark = node:node_auto_index(name = "Stark")
 MATCH (HouseStark)<-[s:serves]-(guard) 
 WHERE s.as = "household guard"  
 OPTIONAL MATCH (guard)-[:from_house]->(house) 
-RETURN guard.name + ' ' + COALESCE(house.name, ''), COALESCE(s.rank, 'guard')
+RETURN guard.name + ' ' + COALESCE(house.name, '') as `Name`, COALESCE(s.rank, 'guard') as `Rank`
 ----
 
 //table
