@@ -64,7 +64,7 @@ CREATE ( Shaggydog:direwolf )-[:bound]->( RickonStark:character:noble:pointOfVie
 CREATE ( LordEddardStark )-[:father]->( RickonStark )
 CREATE ( RobertBaratheon:character:noble:monarch { name: "Robert" } )-[:from_house]->(HouseBaratheon:house { name: "Baratheon" } )
 CREATE ( RobertBaratheon )-[:king]->( Westeros:state:land { name: "Westeros" } )
-CREATE ( RobertBaratheon )-[:friend]->( LordEddardStark
+CREATE ( RobertBaratheon )-[:friend]->( LordEddardStark )-[:friend]->( RobertBaratheon )
 CREATE ( Summer:direwolf { name: "Summer" } )-[ :bound ]->( BranStark )
 RETURN BranStark, RobbStark, LordEddardStark, theNorth, Winterfell, OldNan
 ----
