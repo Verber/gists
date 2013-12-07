@@ -50,6 +50,7 @@ CREATE ( JoryCassel )-[ :serves { as: "household guard", rank: "Captain of the G
 CREATE ( RodrikCassel:character:noble { name: "Rodrik" } )-[ :from_house ]->( HouseCassel:house { name: "Cassel" } )
 CREATE ( RodrikCassel )-[:serves { as: "Master-at-Arms" }]->( HouseStark )
 CREATE ( RodrikCassel )-[:occupation { occupation: "castellan"}]->( Winterfell )
+CREATE ( RodrikCassel )-[:uncle]->( JoryCassel )-[:nephew]->( RodrikCassel )
 CREATE ( ManceRayder:character:wildling:monarch { name: "Mance", also_known_as: [ "Mance Rayder", "King-Beyond-the-Wall" ] } )
 CREATE ( TheonGreyjoy:character:noble:pointOfView { name: "Theon" } )-[ :ward ]->( LordEddardStark )
 CREATE ( JonSnow:character:pointOfView:skinchanger { name: "Jon" } )-[ :bastard ]->( LordEddardStark )
